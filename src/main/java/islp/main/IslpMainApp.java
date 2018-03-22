@@ -15,8 +15,6 @@ public class IslpMainApp extends Application {
     public void start(Stage primaryStage) {
 
 
-
-
         Scene mainScene = new Scene(new MainPane(),1024,768);
         primaryStage.setScene(mainScene);
         primaryStage.show();
