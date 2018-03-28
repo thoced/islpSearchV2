@@ -2,69 +2,53 @@ package islp.views;
 
 import islp.islp.controllers.CloseAction;
 import islp.islp.controllers.ImportAction;
+import islp.islp.controllers.SingletonObjectManager;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class MainPane extends BorderPane {
 
-    private MenuBar menuBar;
-
-    private Menu menuFile;
-
-    private Menu menuDb;
-    private MenuItem fermer;
-    private MenuItem importer;
+    private Stage parentStage;
     private InputArea inputArea;
     private ResultArea resultArea;
     private ButtonArea buttonArea;
+    private MenuArea menuArea;
 
-   ;
-
-    public MainPane() {
+    public MainPane(Stage parentStage) {
         super();
-
-
-        menuBar = new MenuBar();
-        menuFile = new Menu("File");
-        menuBar.getMenus().add(menuFile);
-        menuDb = new Menu("Data Base");
-        menuBar.getMenus().add(menuDb);
-
+        this.parentStage = parentStage;
         initMenuItem();
         initInputArea();
         initResultArea();
         initButtonArea();
 
-        this.setTop(menuBar);
-
     }
 
     private void initMenuItem(){
-
-        fermer = new MenuItem("Fermer");
-        fermer.setOnAction(new CloseAction());
-        menuFile.getItems().add(fermer);
-
-        importer = new MenuItem("Importer des données");
-        importer.setOnAction(new ImportAction());
-        menuDb.getItems().add(importer);
+        menuArea = new MenuArea(parentStage);
+        SingletonObjectManager.getInstance().getObjects().put(MenuArea.class,menuArea);
+        this.setTop(menuArea);
     }
 
     private void initInputArea(){
         inputArea = new InputArea();
+        SingletonObjectManager.getInstance().getObjects().put(InputArea.class,inputArea);
         this.setLeft(inputArea);
 
     }
 
     private void initResultArea(){
         resultArea = new ResultArea();
+        SingletonObjectManager.getInstance().getObjects().put(ResultArea.class,resultArea);
         this.setCenter(resultArea);
     }
 
     private void initButtonArea(){
         buttonArea = new ButtonArea();
+        SingletonObjectManager.getInstance().getObjects().put(ButtonArea.class,buttonArea);
         this.setBottom(buttonArea);
     }
 

@@ -47,5 +47,7 @@ public class ResultArea extends TableView {
 
 
 
+
+
     }
 }

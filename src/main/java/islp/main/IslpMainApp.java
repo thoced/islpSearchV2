@@ -13,10 +13,9 @@ public class IslpMainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-
-        Scene mainScene = new Scene(new MainPane(),1024,768);
+        Scene mainScene = new Scene(new MainPane(primaryStage),1024,768);
         primaryStage.setScene(mainScene);
+        primaryStage.setTitle("Islp Search V2");
         primaryStage.show();
     }
 }

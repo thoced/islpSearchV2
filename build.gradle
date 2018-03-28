@@ -16,6 +16,8 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.9-rc'
     compile group: 'xml-apis', name: 'xml-apis', version: '2.0.2'
     compile group: 'org.json', name: 'json', version: '20180130'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+
 
 
 }

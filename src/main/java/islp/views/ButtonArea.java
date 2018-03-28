@@ -13,9 +13,7 @@ public class ButtonArea extends HBox {
 
         this.setMinHeight(64);
         this.setMaxHeight(64);
-
         initButton();
-
 
     }
 
