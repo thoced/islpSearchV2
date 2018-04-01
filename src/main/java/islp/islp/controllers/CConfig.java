@@ -1,10 +1,13 @@
 package islp.islp.controllers;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+
 
 public class CConfig
 {
@@ -17,6 +20,8 @@ public class CConfig
     private String password;
     private String driver;
     private String url;
+
+    private static final Logger log = Logger.getLogger(CConfig.class.getName());
 
 
     public String getLogin() {
@@ -121,7 +126,7 @@ public class CConfig
         prop.setProperty("login","");
         prop.setProperty("password","");
         prop.setProperty("driver","com.mysql.cj.jdbc.Driver");
-        prop.setProperty("url", "jdbc:mysql://localhost/");
+        prop.setProperty("url", "jdbc:mysql://18.41.48.178/");
 
         prop.store(output,null);
 

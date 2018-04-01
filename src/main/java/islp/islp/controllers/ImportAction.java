@@ -9,14 +9,15 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.*;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
 
 public class ImportAction implements EventHandler {
+    private static final Logger log = Logger.getLogger(ImportAction.class.getName());
 
     private Stage parentStage;
-
 
     public ImportAction(Stage parentStage) {
         this.parentStage = parentStage;
@@ -27,6 +28,7 @@ public class ImportAction implements EventHandler {
 
         ImportDialog importDialog = new ImportDialog(parentStage);
         Scene scene = new Scene(importDialog,600,480);
+        scene.getStylesheets().add("style.css");
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.initOwner(parentStage);
@@ -46,6 +48,7 @@ public class ImportAction implements EventHandler {
                     importer.writeInDb();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    log.debug(e.getMessage());
                     AlertView alertView = new AlertView("Erreur", "Erreur dans le fichier");
 
                 }

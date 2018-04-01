@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
@@ -19,6 +20,8 @@ public class ImportDialog extends GridPane implements EventHandler{
     private Stage parentStage;
 
     private Label labelText;
+
+    private Label labelWarning;
 
     private ComboListRegistre comboListRegistre;
 
@@ -51,6 +54,11 @@ public class ImportDialog extends GridPane implements EventHandler{
         labelText.setWrapText(true);
         labelText.setTextAlignment(TextAlignment.CENTER);
 
+        labelWarning = new Label("!!! Attention, le fichier au format CSS doit contenir des séparateurs de type - Tabulation - !!!");
+        labelWarning.setWrapText(true);
+        labelWarning.setTextAlignment(TextAlignment.CENTER);
+        labelWarning.setTextFill(Color.color(1,0,0));
+
         nextButton = new Button("Suivant");
         cancelButton = new Button("Annuler");
         nextButton.setOnAction(this);
@@ -71,6 +79,7 @@ public class ImportDialog extends GridPane implements EventHandler{
         rowConstraints.setVgrow(Priority.SOMETIMES);
         getRowConstraints().add(0,rowConstraints);
         getRowConstraints().add(1,rowConstraints);
+        getRowConstraints().add(1,rowConstraints);
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setPercentWidth(50);
@@ -83,8 +92,9 @@ public class ImportDialog extends GridPane implements EventHandler{
 
         add(labelText,0,0);
         add(comboListRegistre,1,0);
-        add(cancelButton,0,1);
-        add(nextButton,1,1);
+        add(labelWarning,0,1);
+        add(cancelButton,0,2);
+        add(nextButton,1,2);
 
 
 

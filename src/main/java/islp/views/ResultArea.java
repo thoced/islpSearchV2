@@ -1,12 +1,17 @@
 package islp.views;
 
+import islp.Models.ResultModel;
+import islp.views.tableCell.DateNaissanceTableCell;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ResultArea extends TableView {
 
     private TableColumn id;
     private TableColumn numero;
+    private TableColumn land;
     private TableColumn nom;
     private TableColumn prenom;
     private TableColumn dateNaissance;
@@ -21,11 +26,17 @@ public class ResultArea extends TableView {
     }
 
     private void initColumns(){
+
+
+
          id = new TableColumn("id");
          this.getColumns().add(id);
 
          numero = new TableColumn("numéro");
          this.getColumns().add(numero);
+
+         land = new TableColumn("pays");
+         this.getColumns().add(land);
 
          nom = new TableColumn("nom");
          this.getColumns().add(nom);
@@ -47,7 +58,19 @@ public class ResultArea extends TableView {
 
 
 
+         id.setCellValueFactory(new PropertyValueFactory<ResultModel,Integer>("id"));
+         numero.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("numero"));
+         land.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("land"));
+         nom.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("nom"));
+         prenom.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("prenom"));
+         dateNaissance.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("dateNaissance"));
+         type.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("typeIslp"));
+         numIslp.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("numeroIslp"));
+         millesime.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("annee"));
 
 
+        dateNaissance.setCellFactory(DateNaissanceTableCell.forTableColumn());
+
+        getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 }

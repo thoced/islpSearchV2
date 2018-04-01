@@ -47,7 +47,7 @@ public class MainPane extends BorderPane {
     }
 
     private void initButtonArea(){
-        buttonArea = new ButtonArea();
+        buttonArea = new ButtonArea(parentStage);
         SingletonObjectManager.getInstance().getObjects().put(ButtonArea.class,buttonArea);
         this.setBottom(buttonArea);
     }

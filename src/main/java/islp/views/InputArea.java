@@ -21,12 +21,14 @@ public class InputArea extends TextArea{
     public ArrayNumero getListNumero(){
 
         ArrayNumero arrayNumero = new ArrayNumero();
-        String text = getText();
+        String text = getText().trim();
         String[] splitNumero = text.split("\n");
         if(splitNumero != null){
             for(String s : splitNumero){
-                NumeroModel numero = new NumeroModel(s);
-                arrayNumero.add(numero);
+                if(s != null && !s.isEmpty()) {
+                    NumeroModel numero = new NumeroModel(s);
+                    arrayNumero.add(numero);
+                }
             }
         }
 

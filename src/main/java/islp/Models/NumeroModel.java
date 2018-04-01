@@ -19,4 +19,14 @@ public class NumeroModel implements Serializable {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+
+        if(((NumeroModel)o).numero.equals(numero))
+            return true;
+        else
+            return false;
+    }
 }
