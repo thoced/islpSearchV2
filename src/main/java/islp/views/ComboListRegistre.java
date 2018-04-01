@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class ComboListRegistre extends ComboBox{
     private Stage parentStage;
@@ -17,8 +18,6 @@ public class ComboListRegistre extends ComboBox{
         ObservableRegistre observableRegistre = new ObservableRegistre();
         ObservableList<RegistreModel> observableList = FXCollections.observableArrayList(observableRegistre);
         setItems(observableList);
-
-
 
     }
 }

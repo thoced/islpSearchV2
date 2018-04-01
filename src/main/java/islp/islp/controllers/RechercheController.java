@@ -7,6 +7,8 @@ import islp.views.ButtonArea;
 import islp.views.ComboListRegistre;
 import islp.views.InputArea;
 import islp.views.ResultArea;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -15,13 +17,23 @@ import javafx.event.EventHandler;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class RechercheController implements EventHandler {
+public class RechercheController implements EventHandler,ChangeListener<String> {
 
     private ComboListRegistre comboListRegistre;
 
+    private int nbTuple;
+
+    public RechercheController() {
+    }
+
     public RechercheController(ComboListRegistre comboListRegistre) {
         this.comboListRegistre = comboListRegistre;
+    }
+
+    public int getNbTuple() {
+        return nbTuple;
     }
 
     @Override
@@ -90,5 +102,21 @@ public class RechercheController implements EventHandler {
 
         }
 
+    }
+
+    @Override
+    public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+        String registre = t1;
+        String table = "t_islp_" + registre;
+        String sql = "select count(*) from " + table;
+        try {
+            Statement ps = SingletonConnection.getInstance().getConnection().createStatement();
+            ResultSet resultSet = ps.executeQuery(sql);
+            while(resultSet.next()){
+                nbTuple = resultSet.getInt("count(*)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
