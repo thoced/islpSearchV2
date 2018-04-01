@@ -1,11 +1,17 @@
 package islp.views;
 
 import islp.Models.ResultModel;
+import islp.views.cellRenderFactory.CellNumeroColor;
 import islp.views.tableCell.DateNaissanceTableCell;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
+
+import javax.xml.transform.Result;
 
 public class ResultArea extends TableView {
 
@@ -18,6 +24,9 @@ public class ResultArea extends TableView {
     private TableColumn type;
     private TableColumn numIslp;
     private TableColumn millesime;
+
+    private String numeroCurrent;
+    private static ResultModel saveModel;
 
     public ResultArea() {
         super();
@@ -69,7 +78,9 @@ public class ResultArea extends TableView {
          millesime.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("annee"));
 
 
-        dateNaissance.setCellFactory(DateNaissanceTableCell.forTableColumn());
+         dateNaissance.setCellFactory(DateNaissanceTableCell.forTableColumn());
+
+
 
         getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }

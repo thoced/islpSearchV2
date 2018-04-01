@@ -46,6 +46,8 @@ public class RechercheController implements EventHandler {
             ObservableList<ResultModel> observableList = FXCollections.observableArrayList();
             observableList.clear();
 
+
+
             int cpt = 1;
 
             for(NumeroModel numero : arrayNumero) {
@@ -65,8 +67,10 @@ public class RechercheController implements EventHandler {
                                 model.setTypeIslp(result.getString("type_islp"));
                                 model.setNumeroIslp(result.getString("numero_islp"));
                                 model.setAnnee(result.getString("annee"));
+
                                 observableList.add(model);
                                 cpt++;
+
                             }
                         }
 

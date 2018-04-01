@@ -1,9 +1,6 @@
 package islp.views;
 
-import islp.islp.controllers.AboutAction;
-import islp.islp.controllers.CloseAction;
-import islp.islp.controllers.ImportAction;
-import islp.islp.controllers.OptionAction;
+import islp.islp.controllers.*;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -18,8 +15,11 @@ public class MenuArea extends MenuBar{
     private MenuItem importer;
     private MenuItem aide;
     private MenuItem option;
+    private MenuItem export;
+    private MenuItem exportOnlyItem;
 
     private Stage parentStage;
+    ;
 
 
     public MenuArea(Stage parentStage) {
@@ -31,12 +31,20 @@ public class MenuArea extends MenuBar{
     private void initMenuItem(){
 
 
-        menuFile = new Menu("File");
+        menuFile = new Menu("Fichier");
         this.getMenus().add(menuFile);
         menuDb = new Menu("Data Base");
         this.getMenus().add(menuDb);
         menuAbout = new Menu("Au sujet de");
         this.getMenus().add(menuAbout);
+
+        export = new MenuItem("Exporter en Pdf");
+        export.setOnAction(new ExportPdfAction(parentStage,false));
+        menuFile.getItems().add(export);
+
+        exportOnlyItem = new MenuItem("Exporter en Pdf (Uniquement les items selectionnés)");
+        exportOnlyItem.setOnAction(new ExportPdfAction(parentStage,true));
+        menuFile.getItems().add(exportOnlyItem);
 
         option = new MenuItem("Option");
         option.setOnAction(new OptionAction(parentStage));

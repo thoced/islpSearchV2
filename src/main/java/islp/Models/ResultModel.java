@@ -1,15 +1,12 @@
 package islp.Models;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class ResultModel {
 
 
 
-    private IntegerProperty group = new SimpleIntegerProperty();
+    private BooleanProperty group = new SimpleBooleanProperty();
     private IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty numero = new SimpleStringProperty();
     private StringProperty land = new SimpleStringProperty();
@@ -23,15 +20,15 @@ public class ResultModel {
     public ResultModel() {
     }
 
-    public int getGroup() {
+    public boolean getGroup() {
         return group.get();
     }
 
-    public IntegerProperty groupProperty() {
+    public BooleanProperty groupProperty() {
         return group;
     }
 
-    public void setGroup(int group) {
+    public void setGroup(boolean group) {
         this.group.set(group);
     }
 
@@ -141,5 +138,18 @@ public class ResultModel {
 
     public void setAnnee(String annee) {
         this.annee.set(annee);
+    }
+
+    public String getDateNaissanceFormat(){
+        if(dateNaissance.getValue() != null && !dateNaissance.getValue().isEmpty()) {
+            String annee = dateNaissance.getValue().substring(0, 4);
+            String mois = dateNaissance.getValue().substring(4, 6);
+            String jour = dateNaissance.getValue().substring(6, 8);
+            String dateNaissanceFormat = jour + "/" + mois + "/" + annee;
+            return dateNaissanceFormat;
+        }
+        else
+            return null;
+
     }
 }

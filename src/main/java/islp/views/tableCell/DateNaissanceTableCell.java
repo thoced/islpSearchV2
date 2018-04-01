@@ -16,6 +16,8 @@ public class DateNaissanceTableCell<T> extends TableCell<T,String>{
             String dateNaissance = jour + "/" + mois + "/" + annee;
 
             this.setText(dateNaissance);
+
+
         }
         //setStyle("-fx-background-color:red");
     }
