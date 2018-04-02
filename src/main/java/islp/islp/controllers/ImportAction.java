@@ -58,13 +58,15 @@ public class ImportAction extends Service<Integer>implements EventHandler {
           });
 
           this.setOnCancelled((WorkerStateEvent event) -> {
-              importDialog.getCancelButton().setDisable(false);
-              importDialog.getNextButton().setDisable(false);
-              importDialog.getComboListRegistre().setDisable(false);
-              Alert alert = new Alert(Alert.AlertType.WARNING);
-              alert.setTitle("Arret brutale");
-              alert.setContentText("L'éxécution du processsus d'ajout des données a été arreté manuellement");
-              alert.showAndWait();
+              if(isRunning()) {
+                  importDialog.getCancelButton().setDisable(false);
+                  importDialog.getNextButton().setDisable(false);
+                  importDialog.getComboListRegistre().setDisable(false);
+                  Alert alert = new Alert(Alert.AlertType.WARNING);
+                  alert.setTitle("Arret brutale");
+                  alert.setContentText("L'éxécution du processsus d'ajout des données a été arreté manuellement");
+                  alert.showAndWait();
+              }
           });
 
           this.setOnRunning((WorkerStateEvent event) -> {
@@ -125,7 +127,7 @@ public class ImportAction extends Service<Integer>implements EventHandler {
         file = fileChooser.showOpenDialog(null);
         if (file != null) {
             progressIndicator.setVisible(true);
-            this.start();
+            this.restart();
         }
 
     }
