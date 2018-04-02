@@ -118,6 +118,7 @@ public class ImportAction implements EventHandler {
                     progressIndicator.setProgress(1f);
                     importDialog.getNextButton().setDisable(false);
                     importDialog.getComboListRegistre().setDisable(false);
+                    importDialog.getCancelButton().setDisable(false);
                 return true;
             }
         };
