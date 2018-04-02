@@ -9,15 +9,21 @@ public class DateNaissanceTableCell<T> extends TableCell<T,String>{
     protected void updateItem(String date, boolean empty) {
         super.updateItem(date, empty);
 
-        if(!empty && date != null && date.length() == 8) {
-            String annee = date.substring(0, 4);
-            String mois = date.substring(4, 6);
-            String jour = date.substring(6, 8);
-            String dateNaissance = jour + "/" + mois + "/" + annee;
+        if(empty || date == null) {
+            this.setText("");
+        }
+        else {
 
-            this.setText(dateNaissance);
+            if (!empty && date != null && date.length() == 8) {
+                String annee = date.substring(0, 4);
+                String mois = date.substring(4, 6);
+                String jour = date.substring(6, 8);
+                String dateNaissance = jour + "/" + mois + "/" + annee;
+
+                this.setText(dateNaissance);
 
 
+            }
         }
         //setStyle("-fx-background-color:red");
     }
