@@ -1,11 +1,13 @@
 package islp.views;
 
+import javafx.concurrent.Task;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -19,6 +21,8 @@ public class AboutDialog extends BorderPane{
     private GridPane gridPane;
 
     private Button buttonCancel;
+
+    private ProgressIndicator p1;
 
     public AboutDialog(Stage parentStage) {
         this.parentStage = parentStage;
@@ -62,5 +66,24 @@ public class AboutDialog extends BorderPane{
         buttonCancel.setPadding(insets);
         buttonCancel.setCenterShape(true);
         setBottom(buttonCancel);
+
+      /*  p1 = new ProgressIndicator();
+        p1.setProgress(0.25f);
+        setLeft(p1);*/
+
+      //  new Thread(createWorker()).start();
     }
+
+   /* public Task createWorker() {
+        return new Task() {
+            @Override
+            protected Object call() throws Exception {
+                for (int i = 0; i < 10; i++) {
+                    Thread.sleep(2000);
+                    p1.setProgress(p1.getProgress()+0.1f);
+                }
+                return true;
+            }
+        };
+    }*/
 }

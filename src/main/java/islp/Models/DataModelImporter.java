@@ -27,6 +27,9 @@ public class DataModelImporter extends ArrayList<DataModel> {
         this.file = file;
         this.registre = registre;
 
+        if(registre != null)
+            computeRegistre = "t_islp_" + registre;
+
         if(this.file != null){
             FileInputStream fileInputStream = new FileInputStream(this.file);
             if(fileInputStream != null){
@@ -70,18 +73,8 @@ public class DataModelImporter extends ArrayList<DataModel> {
         this.registre = registre;
     }
 
-    public void writeInDb(){
 
-
-        if(registre != null)
-            computeRegistre = "t_islp_" + registre;
-
-        for(DataModel model : this){
-            writeTrupleDb(model);
-        }
-    }
-
-    private void writeTrupleDb(DataModel model){
+    public void writeTrupleDb(DataModel model){
 
         String sql = "insert into " + computeRegistre +  "(numero,land,nom,prenom,date_naissance,type_islp,numero_islp,annee) " +
                 "values (?,?,?,?,?,?,?,?)";

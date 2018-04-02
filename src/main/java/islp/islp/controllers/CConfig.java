@@ -126,7 +126,7 @@ public class CConfig
         prop.setProperty("login","");
         prop.setProperty("password","");
         prop.setProperty("driver","com.mysql.cj.jdbc.Driver");
-        prop.setProperty("url", "jdbc:mysql://18.41.48.178/");
+        prop.setProperty("url", "jdbc:mysql://localhost/islpsearch?serverTimezone=UTC");
 
         prop.store(output,null);
 
