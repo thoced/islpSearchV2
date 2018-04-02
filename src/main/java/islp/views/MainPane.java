@@ -1,11 +1,6 @@
 package islp.views;
 
-import islp.islp.controllers.CloseAction;
-import islp.islp.controllers.ImportAction;
 import islp.islp.controllers.SingletonObjectManager;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -25,6 +20,22 @@ public class MainPane extends BorderPane {
         initResultArea();
         initButtonArea();
 
+    }
+
+    public InputArea getInputArea() {
+        return inputArea;
+    }
+
+    public ResultArea getResultArea() {
+        return resultArea;
+    }
+
+    public ButtonArea getButtonArea() {
+        return buttonArea;
+    }
+
+    public MenuArea getMenuArea() {
+        return menuArea;
     }
 
     private void initMenuItem(){
@@ -50,6 +61,7 @@ public class MainPane extends BorderPane {
         buttonArea = new ButtonArea(parentStage);
         SingletonObjectManager.getInstance().getObjects().put(ButtonArea.class,buttonArea);
         this.setBottom(buttonArea);
+
     }
 
 

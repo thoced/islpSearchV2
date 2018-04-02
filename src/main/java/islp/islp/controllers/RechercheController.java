@@ -36,6 +36,22 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
         return nbTuple;
     }
 
+    public static int getNbTupleForRegistre(String registre){
+        String table = "t_islp_" + registre;
+        String sql = "select count(*) from " + table;
+        try {
+            Statement ps = SingletonConnection.getInstance().getConnection().createStatement();
+            ResultSet resultSet = ps.executeQuery(sql);
+            while(resultSet.next()){
+                return resultSet.getInt("count(*)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
+
     @Override
     public void handle(Event event) {
 

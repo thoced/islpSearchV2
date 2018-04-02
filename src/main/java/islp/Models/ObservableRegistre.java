@@ -19,6 +19,8 @@ public class ObservableRegistre extends ArrayList<RegistreModel>{
 
     private static final Logger log = Logger.getLogger(ObservableRegistre.class.getName());
 
+
+
     public ObservableRegistre() {
 
 
@@ -42,4 +44,5 @@ public class ObservableRegistre extends ArrayList<RegistreModel>{
         }
 
     }
+   
 }

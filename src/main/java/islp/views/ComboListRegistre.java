@@ -14,7 +14,6 @@ public class ComboListRegistre extends ComboBox{
     public ComboListRegistre(Stage parentStage) {
         super();
         this.parentStage = parentStage;
-
         ObservableRegistre observableRegistre = new ObservableRegistre();
         ObservableList<RegistreModel> observableList = FXCollections.observableArrayList(observableRegistre);
         setItems(observableList);
