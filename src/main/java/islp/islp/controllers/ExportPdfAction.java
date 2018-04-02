@@ -79,8 +79,8 @@ public class ExportPdfAction implements EventHandler{
     private void writeElements(ObservableList selectedItems) throws DocumentException {
         for(Object model : selectedItems){
             if(model instanceof ResultModel){
-                String out = ((ResultModel)model).getNumero() + " " + ((ResultModel)model).getNom() + " " + ((ResultModel)model).getPrenom() + " " + ((ResultModel)model).getDateNaissanceFormat() + " " +
-                        ((ResultModel)model).getNumeroIslp() + " " +  ((ResultModel)model).getAnnee() + " " + ((ResultModel)model).getTypeIslp();
+                String out = ((ResultModel)model).getNumero() + " - " + ((ResultModel)model).getNom() + " " + ((ResultModel)model).getPrenom() + " (" + ((ResultModel)model).getDateNaissanceFormat() + ") - " +
+                        ((ResultModel)model).getNumeroIslp() + "/" +  ((ResultModel)model).getAnnee() + " - " + ((ResultModel)model).getTypeIslp();
                 document.add(new Paragraph(out));
             }
         }
