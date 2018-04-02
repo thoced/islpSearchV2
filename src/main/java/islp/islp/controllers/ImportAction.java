@@ -85,22 +85,18 @@ public class ImportAction extends Service<Integer>implements EventHandler {
 
         if(importDialog == null) {
             importDialog = new ImportDialog(parentStage);
-            importDialog.getCancelButton().setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
 
-                        if(ImportAction.this.isRunning())
-                            ImportAction.this.cancel();
+            importDialog.getCancelButton().setOnAction((ActionEvent a) -> {
+                    if(ImportAction.this.isRunning())
+                        ImportAction.this.cancel();
 
-                        stage.hide();
-                }
+                    stage.hide();
             });
-            importDialog.getNextButton().setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                     importData();
-                }
+
+            importDialog.getNextButton().setOnAction((ActionEvent a) -> {
+                importData();
             });
+
             progressIndicator.setVisible(false);
             importDialog.add(progressIndicator,1,1);
             Scene scene = new Scene(importDialog, 600, 480);
@@ -111,11 +107,8 @@ public class ImportAction extends Service<Integer>implements EventHandler {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.UNIFIED);
             stage.setTitle("Sélection du registre");
-            stage.addEventHandler(WindowEvent.WINDOW_HIDING, new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent windowEvent) {
-                    importDialog = null;
-                }
+            stage.addEventHandler(WindowEvent.WINDOW_HIDING, (WindowEvent a) -> {
+                importDialog = null;
             });
             stage.showAndWait();
 

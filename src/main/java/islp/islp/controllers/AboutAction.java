@@ -24,11 +24,8 @@ public class AboutAction implements EventHandler{
     public void handle(Event event) {
 
         aboutDialog = new AboutDialog(parentStage);
-        aboutDialog.getButtonCancel().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                stage.hide();
-            }
+        aboutDialog.getButtonCancel().setOnAction((ActionEvent a) ->  {
+            stage.hide();
         });
         Scene scene = new Scene(aboutDialog,640,320);
         scene.getStylesheets().add("style.css");

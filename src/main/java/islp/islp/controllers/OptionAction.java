@@ -42,38 +42,29 @@ public class OptionAction implements EventHandler<ActionEvent>{
              optionDialog.getHostTextField().setText(config.getUrl());
              optionDialog.getLoginTextField().setText(config.getLogin());
              optionDialog.getPasswordTextField().setText(config.getPassword());
-             optionDialog.getButtonCancel().setOnAction(new EventHandler<ActionEvent>() {
-                 @Override
-                 public void handle(ActionEvent actionEvent) {
-                     hideAndClose();
-                 }
+             optionDialog.getButtonCancel().setOnAction((ActionEvent a) -> {
+                 hideAndClose();
              });
-             optionDialog.getButtonOk().setOnAction(new EventHandler<ActionEvent>() {
-                 @Override
-                 public void handle(ActionEvent actionEvent) {
-                     try {
-                         CConfig config = new CConfig();
-                         config.setDriver(optionDialog.getDriverTextField().getText());
-                         config.setUrl(optionDialog.getHostTextField().getText());
-                         config.setLogin(optionDialog.getLoginTextField().getText());
-                         config.setPassword(optionDialog.getPasswordTextField().getText());
-                         config.saveConfig();
-                         hideAndClose();
-                     } catch (IOException e) {
-                         e.printStackTrace();
-                     } catch (PropertiesNotFoundException e) {
-                         e.printStackTrace();
-                     }
+             optionDialog.getButtonOk().setOnAction((ActionEvent a) -> {
+                 try {
+                     CConfig config = new CConfig();
+                     config.setDriver(optionDialog.getDriverTextField().getText());
+                     config.setUrl(optionDialog.getHostTextField().getText());
+                     config.setLogin(optionDialog.getLoginTextField().getText());
+                     config.setPassword(optionDialog.getPasswordTextField().getText());
+                     config.saveConfig();
+                     hideAndClose();
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 } catch (PropertiesNotFoundException e) {
+                     e.printStackTrace();
                  }
              });
              Scene scene = new Scene(optionDialog, 640, 320);
              scene.getStylesheets().add("style.css");
              stage = new Stage();
-             stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, new EventHandler<WindowEvent>() {
-                 @Override
-                 public void handle(WindowEvent windowEvent) {
-                     hideAndClose();
-                 }
+             stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, (WindowEvent a) -> {
+                 hideAndClose();
              });
              stage.initStyle(StageStyle.UTILITY);
              stage.initModality(Modality.APPLICATION_MODAL);
