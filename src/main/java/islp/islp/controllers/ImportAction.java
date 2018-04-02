@@ -6,7 +6,9 @@ import islp.views.AlertView;
 import islp.views.ImportDialog;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -19,7 +21,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 
-public class ImportAction implements EventHandler {
+public class ImportAction extends Service<Integer>implements EventHandler {
     private static final Logger log = Logger.getLogger(ImportAction.class.getName());
 
     private Stage parentStage;
@@ -34,10 +36,46 @@ public class ImportAction implements EventHandler {
 
     private Thread thread;
 
-    public ImportAction(Stage parentStage) {
-        this.parentStage = parentStage;
-    }
+    private File file = null;
 
+    public ImportAction(Stage parentStage) {
+          this.parentStage = parentStage;
+          this.progressIndicator.progressProperty().bind(this.progressProperty());
+          this.setOnSucceeded((WorkerStateEvent event) ->{
+              importDialog.getCancelButton().setDisable(false);
+              importDialog.getNextButton().setDisable(false);
+              importDialog.getComboListRegistre().setDisable(false);
+          });
+
+          this.setOnFailed((WorkerStateEvent event) -> {
+              importDialog.getCancelButton().setDisable(false);
+              importDialog.getNextButton().setDisable(false);
+              importDialog.getComboListRegistre().setDisable(false);
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+              alert.setTitle("Erreur dans la tâche de fond");
+              alert.setContentText("Une erreur est survenue dans l'éxécution du processus d'ajout des données");
+              alert.showAndWait();
+          });
+
+          this.setOnCancelled((WorkerStateEvent event) -> {
+              importDialog.getCancelButton().setDisable(false);
+              importDialog.getNextButton().setDisable(false);
+              importDialog.getComboListRegistre().setDisable(false);
+              Alert alert = new Alert(Alert.AlertType.WARNING);
+              alert.setTitle("Arret brutale");
+              alert.setContentText("L'éxécution du processsus d'ajout des données a été arreté manuellement");
+              alert.showAndWait();
+          });
+
+          this.setOnRunning((WorkerStateEvent event) -> {
+              importDialog.getNextButton().setDisable(true);
+              importDialog.getComboListRegistre().setDisable(true);
+          } );
+
+
+
+
+    }
 
 
     @Override
@@ -48,19 +86,17 @@ public class ImportAction implements EventHandler {
             importDialog.getCancelButton().setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    if(thread != null)
-                        thread.interrupt();
+
+                        if(ImportAction.this.isRunning())
+                            ImportAction.this.cancel();
+
                         stage.hide();
                 }
             });
             importDialog.getNextButton().setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    progressIndicator.setProgress(0);
-                    importDialog.getNextButton().setDisable(true);
-                    importDialog.getCancelButton().setDisable(true);
-                    importDialog.getComboListRegistre().setDisable(true);
-                    importData();
+                     importData();
                 }
             });
             progressIndicator.setVisible(false);
@@ -86,45 +122,41 @@ public class ImportAction implements EventHandler {
 
     private void importData() {
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
+        file = fileChooser.showOpenDialog(null);
         if (file != null) {
             progressIndicator.setVisible(true);
-            createWorker = createWorker(file);
-            thread = new Thread(createWorker);
-            thread.start();
+            this.start();
         }
-        else {
-            importDialog.getNextButton().setDisable(false);
-            importDialog.getComboListRegistre().setDisable(false);
-            importDialog.getCancelButton().setDisable(false);
-        }
+
     }
 
-    public Task createWorker(File file) {
-        return new Task() {
+
+
+    @Override
+    protected Task<Integer> createTask() {
+        return new Task<Integer>(){
+
             @Override
-            protected Object call() throws Exception {
+            protected Integer call() throws Exception {
                 DataModelImporter importer = new DataModelImporter(file, importDialog.getRegistreSelected());
 
                 double minProgress = 1.0f / ((double)importer.size());
                 double progress = 0f;
+                updateProgress(0,1);
 
-                    for (DataModel model : importer) {
-                       // Thread.sleep(10);
-                        importer.writeTrupleDb(model);
-                        progressIndicator.setProgress(progress);
-                        progress += minProgress;
-                    }
-                    progressIndicator.setProgress(1f);
-                    importDialog.getNextButton().setDisable(false);
-                    importDialog.getComboListRegistre().setDisable(false);
-                    importDialog.getCancelButton().setDisable(false);
-                return true;
+                for (DataModel model : importer) {
+                    // Thread.sleep(10);
+                    importer.writeTrupleDb(model);
+                    updateProgress(progress,1f);
+                    progress += minProgress;
+                    if(this.isCancelled())
+                        break;
+                }
+                updateProgress(1f,1f);
+                return 1;
             }
         };
     }
-
-
 }
 
 

@@ -30,6 +30,8 @@ public class DataModelImporter extends ArrayList<DataModel> {
         if(registre != null)
             computeRegistre = "t_islp_" + registre;
 
+        this.clear();
+
         if(this.file != null){
             FileInputStream fileInputStream = new FileInputStream(this.file);
             if(fileInputStream != null){
