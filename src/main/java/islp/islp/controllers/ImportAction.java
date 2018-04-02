@@ -109,6 +109,8 @@ public class ImportAction extends Service<Integer>implements EventHandler {
             stage.setTitle("Sélection du registre");
             stage.addEventHandler(WindowEvent.WINDOW_HIDING, (WindowEvent a) -> {
                 importDialog = null;
+                if(ImportAction.this.isRunning())
+                    ImportAction.this.cancel();
             });
             stage.showAndWait();
 

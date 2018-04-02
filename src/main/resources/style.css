@@ -69,3 +69,7 @@
     -fx-border-style: dashed;
     -fx-border-width: 2;
 }
+
+.ProgressIndicator{
+    -fx-background-color:red;
+}
