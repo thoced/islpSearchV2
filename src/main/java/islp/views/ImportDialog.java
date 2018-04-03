@@ -23,6 +23,8 @@ public class ImportDialog extends GridPane {
 
     private Label labelWarning;
 
+    private Label labelStructure;
+
     private ComboListRegistre comboListRegistre;
 
     private Button nextButton;
@@ -67,15 +69,26 @@ public class ImportDialog extends GridPane {
 
         labelWarning = new Label("!!! Attention, le fichier au format CSS doit contenir des séparateurs de type - Tabulation - !!!");
         labelWarning.setWrapText(true);
-        labelWarning.setTextAlignment(TextAlignment.CENTER);
+        labelWarning.setTextAlignment(TextAlignment.LEFT);
         labelWarning.setTextFill(Color.color(1, 0, 0));
+
+        labelStructure = new Label("Structure du fichier:\n\n" +
+                "- numero\n" +
+                "- pays\n" +
+                "- nom\n" +
+                "- prenom\n" +
+                "- date de naissance\n" +
+                "- type islp\n" +
+                "- numero islp\n" +
+                "- annee islp\n");
+        labelStructure.setTextAlignment(TextAlignment.LEFT);
+        labelStructure.setWrapText(true);
+
 
         nextButton = new Button("Suivant");
         cancelButton = new Button("Annuler");
         cancelButton.setAlignment(Pos.CENTER);
         nextButton.setAlignment(Pos.CENTER);
-
-
 
         this.setPrefSize(640, 480);
         this.setAlignment(Pos.CENTER);
@@ -87,9 +100,14 @@ public class ImportDialog extends GridPane {
         rowConstraints.setPercentHeight(50);
         rowConstraints.setFillHeight(true);
         rowConstraints.setVgrow(Priority.SOMETIMES);
+        RowConstraints rowConstraintsButton = new RowConstraints();
+        rowConstraintsButton.setPercentHeight(15);
         getRowConstraints().add(0, rowConstraints);
         getRowConstraints().add(1, rowConstraints);
-        getRowConstraints().add(1, rowConstraints);
+        getRowConstraints().add(2, rowConstraintsButton);
+
+
+
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setPercentWidth(50);
@@ -103,6 +121,7 @@ public class ImportDialog extends GridPane {
         add(labelText, 0, 0);
         add(comboListRegistre, 1, 0);
         add(labelWarning, 0, 1);
+        add(labelStructure,1,1);
         add(cancelButton, 0, 2);
         add(nextButton, 1, 2);
 
