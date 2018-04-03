@@ -118,11 +118,19 @@ public class ImportAction extends Service<Integer>implements EventHandler {
     }
 
     private void importData() {
-        FileChooser fileChooser = new FileChooser();
-        file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            progressIndicator.setVisible(true);
-            this.restart();
+        if(!importDialog.getComboListRegistre().getSelectionModel().isEmpty()){
+            FileChooser fileChooser = new FileChooser();
+            file = fileChooser.showOpenDialog(null);
+            if (file != null) {
+                progressIndicator.setVisible(true);
+                this.restart();
+            }
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de sélection de registre");
+            alert.setContentText("Veuillez sélectionner un registre");
+            alert.showAndWait();
         }
 
     }

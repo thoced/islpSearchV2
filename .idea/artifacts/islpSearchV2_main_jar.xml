@@ -4,10 +4,9 @@
     <root id="archive" name="islpSearchV2_main.jar">
       <element id="module-output" name="islpSearchV2_main" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.itextpdf/itextpdf/5.5.1/391a5e410f8b95cd90b528ccc9aa618b1aee3b13/itextpdf-5.5.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/8.0.9-rc/8367d12f856cabe318fd2973b7854079ee54bfd1/mysql-connector-java-8.0.9-rc.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/log4j/log4j/1.2.17/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar" path-in-jar="/" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/style.css" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/8.0.9-rc/8367d12f856cabe318fd2973b7854079ee54bfd1/mysql-connector-java-8.0.9-rc.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
     </root>
   </artifact>
 </component>
