@@ -37,8 +37,9 @@ public class DataModelImporter extends ArrayList<DataModel> {
             if(fileInputStream != null){
                BufferedReader bufferedReader = new BufferedReader(new FileReader(this.file));
 
-               while(bufferedReader.readLine() != null){
-                    String line  = bufferedReader.readLine();
+               String line = null;
+               while((line = bufferedReader.readLine()) != null){
+                  //  String line  = bufferedReader.readLine();
                     if(line != null){
 
                         String[] split = line.split("\t");
