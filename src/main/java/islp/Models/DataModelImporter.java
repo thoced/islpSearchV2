@@ -39,12 +39,9 @@ public class DataModelImporter extends ArrayList<DataModel> {
 
                String line = null;
                while((line = bufferedReader.readLine()) != null){
-                  //  String line  = bufferedReader.readLine();
-                    if(line != null){
 
                         String[] split = line.split("\t");
                         // si la séparation se fait avec des tabulations
-
                         if(split != null && split.length > 7){
                             DataModel model = new DataModel();
                             model.setNumero(split[0].trim());
@@ -56,7 +53,7 @@ public class DataModelImporter extends ArrayList<DataModel> {
                             model.setNumeroIslp(split[6].trim());
                             model.setAnneeIslp(split[7].trim());
                             this.add(model);
-                        }
+
                     }
                }
 
