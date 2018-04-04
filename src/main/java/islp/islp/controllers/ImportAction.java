@@ -20,9 +20,12 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class ImportAction extends Service<Integer>implements EventHandler {
     private static final Logger log = Logger.getLogger(ImportAction.class.getName());
+
+    private final int TIME_SLEEP  = 5;
 
     private Stage parentStage;
 
@@ -87,10 +90,20 @@ public class ImportAction extends Service<Integer>implements EventHandler {
             importDialog = new ImportDialog(parentStage);
 
             importDialog.getCancelButton().setOnAction((ActionEvent a) -> {
-                    if(ImportAction.this.isRunning())
-                        ImportAction.this.cancel();
+                    if(ImportAction.this.isRunning()) {
 
-                    stage.hide();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Annulation de l'import");
+                        alert.setContentText("Etes vous sûr de vouloir arreter l'importation ?");
+                        alert.getButtonTypes().setAll(ButtonType.YES,ButtonType.NO);
+                        Optional<ButtonType> option = alert.showAndWait();
+                        if(option.get() == ButtonType.YES){
+                            ImportAction.this.cancel();
+                            stage.hide();
+                        }
+
+                    }else
+                        stage.hide();
             });
 
             importDialog.getNextButton().setOnAction((ActionEvent a) -> {
@@ -156,6 +169,7 @@ public class ImportAction extends Service<Integer>implements EventHandler {
                     progress += minProgress;
                     if(this.isCancelled())
                         break;
+                    Thread.sleep(TIME_SLEEP);
                 }
                 updateProgress(1f,1f);
                 return 1;
