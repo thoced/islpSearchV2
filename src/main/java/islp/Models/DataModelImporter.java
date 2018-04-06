@@ -15,20 +15,31 @@ public class DataModelImporter extends ArrayList<DataModel> {
 
     private String computeRegistre = "t_islp_zp_5278_seraing_neupre";
 
+    private PreparedStatement preparedStatement;
+
     private int fileSize;
 
-    public DataModelImporter() {
+    public DataModelImporter() throws SQLException {
         super();
 
     }
 
-    public DataModelImporter(File file,String registre) throws IOException {
+    public DataModelImporter(File file,String registre) throws IOException, SQLException {
 
         this.file = file;
         this.registre = registre;
 
         if(registre != null)
             computeRegistre = "t_islp_" + registre;
+
+        String sql = "insert into " + computeRegistre +  "(numero,land,nom,prenom,date_naissance,type_islp,numero_islp,annee) " +
+                "values (?,?,?,?,?,?,?,?)";
+
+
+        if(preparedStatement != null)
+            preparedStatement.close();
+
+        preparedStatement = SingletonConnection.getInstance().getConnection().prepareStatement(sql);
 
         this.clear();
 
@@ -74,26 +85,33 @@ public class DataModelImporter extends ArrayList<DataModel> {
     }
 
 
-    public void writeTrupleDb(DataModel model){
+    public void writeTrupleDb(DataModel model) throws SQLException {
 
-        String sql = "insert into " + computeRegistre +  "(numero,land,nom,prenom,date_naissance,type_islp,numero_islp,annee) " +
-                "values (?,?,?,?,?,?,?,?)";
+            if(preparedStatement != null && !preparedStatement.isClosed()) {
 
-        try {
-            PreparedStatement ps = SingletonConnection.getInstance().getConnection().prepareStatement(sql);
-            ps.setString(1,model.getNumero());
-            ps.setString(2,model.getLand());
-            ps.setString(3,model.getNom());
-            ps.setString(4,model.getPrenom());
-            ps.setString(5,model.getDateNaissance());
-            ps.setString(6,model.getTypeIslp());
-            ps.setString(7,model.getNumeroIslp());
-            ps.setString(8,model.getAnneeIslp());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                try {
+                    preparedStatement.setString(1, model.getNumero());
+                    preparedStatement.setString(2, model.getLand());
+                    preparedStatement.setString(3, model.getNom());
+                    preparedStatement.setString(4, model.getPrenom());
+                    preparedStatement.setString(5, model.getDateNaissance());
+                    preparedStatement.setString(6, model.getTypeIslp());
+                    preparedStatement.setString(7, model.getNumeroIslp());
+                    preparedStatement.setString(8, model.getAnneeIslp());
+                    preparedStatement.executeUpdate();
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+
+                }
+            }
 
 
+    }
+
+    public void close() throws SQLException {
+        if(preparedStatement != null)
+            preparedStatement.close();
     }
 }

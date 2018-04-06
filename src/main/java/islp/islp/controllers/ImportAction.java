@@ -20,12 +20,13 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class ImportAction extends Service<Integer>implements EventHandler {
     private static final Logger log = Logger.getLogger(ImportAction.class.getName());
 
-    private final int TIME_SLEEP  = 5;
+    private final int TIME_SLEEP  = 1;
 
     private Stage parentStage;
 
@@ -155,7 +156,7 @@ public class ImportAction extends Service<Integer>implements EventHandler {
         return new Task<Integer>(){
 
             @Override
-            protected Integer call() throws Exception {
+            protected Integer call() throws IOException, SQLException, InterruptedException {
                 DataModelImporter importer = new DataModelImporter(file, importDialog.getRegistreSelected());
 
                 double minProgress = 1.0f / ((double)importer.size());
@@ -171,6 +172,9 @@ public class ImportAction extends Service<Integer>implements EventHandler {
                         break;
                     Thread.sleep(TIME_SLEEP);
                 }
+
+                importer.close();
+
                 updateProgress(1f,1f);
                 return 1;
             }
