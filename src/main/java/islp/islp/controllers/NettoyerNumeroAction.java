@@ -1,6 +1,7 @@
 package islp.islp.controllers;
 
 import islp.Models.NumeroModel;
+import islp.Models.SearchModel;
 import islp.views.InputArea;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -23,7 +24,7 @@ public class NettoyerNumeroAction implements EventHandler{
         textArea.setText("");
 
         if(textArea != null){
-            for(NumeroModel numero : textArea.getListNumero()){
+            for(SearchModel numero : textArea.getListNumero()){
                //numero.setNumero(numero.getNumero().replace(".",""));
                out += "coucou";
             }

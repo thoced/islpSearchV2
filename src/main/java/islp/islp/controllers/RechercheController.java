@@ -1,8 +1,9 @@
 package islp.islp.controllers;
 
-import islp.Models.ArrayNumero;
+import islp.Models.ArraySearch;
 import islp.Models.NumeroModel;
 import islp.Models.ResultModel;
+import islp.Models.SearchModel;
 import islp.views.ButtonArea;
 import islp.views.ComboListRegistre;
 import islp.views.InputArea;
@@ -59,8 +60,8 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
         InputArea inputArea = (InputArea) SingletonObjectManager.getInstance().getObjects().get(InputArea.class);
         if(inputArea != null){
 
-            ArrayNumero arrayNumero = inputArea.getListNumero();
-            if(arrayNumero.size() == 0)
+            ArraySearch arraySearch = inputArea.getListNumero();
+            if(arraySearch.size() == 0)
                 return;
 
             if(comboListRegistre == null || comboListRegistre.getSelectionModel().getSelectedItem() == null)
@@ -69,7 +70,7 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
             String registre = comboListRegistre.getSelectionModel().getSelectedItem().toString();
             String table = "t_islp_" + registre;
 
-            String sql = "select * from " + table + " where numero LIKE ?";
+            String sql = "select * from " + table + " where numero LIKE ? OR nom LIKE ? OR prenom LIKE ?";
 
             ObservableList<ResultModel> observableList = FXCollections.observableArrayList();
             observableList.clear();
@@ -78,10 +79,12 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
 
             int cpt = 1;
 
-            for(NumeroModel numero : arrayNumero) {
+            for(SearchModel search : arraySearch) {
                     try {
                         PreparedStatement ps = SingletonConnection.getInstance().getConnection().prepareStatement(sql);
-                        ps.setString(1,  "%" + numero.getNumero() + "%" );
+                        ps.setString(1,  "%" + search.getSearchValue() + "%" );
+                        ps.setString(2,  "%" + search.getSearchValue() + "%" );
+                        ps.setString(3,  "%" + search.getSearchValue() + "%" );
                         ResultSet result = ps.executeQuery();
                         if(result != null){
                             while(result.next()){
