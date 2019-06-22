@@ -1,16 +1,17 @@
 package islp.views;
 
 import islp.Models.ResultModel;
+import islp.islp.controllers.CopyClipBoardController;
 import islp.views.cellRenderFactory.CellNumeroColor;
 import islp.views.tableCell.DateNaissanceTableCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.DataFormat;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
@@ -19,8 +20,9 @@ import javax.xml.transform.Result;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResultArea extends TableView {
+public class ResultArea extends TableView implements EventHandler<ContextMenuEvent> {
 
+    private final ContextMenu contextMenu;
     private TableColumn id;
     private TableColumn numero;
     private TableColumn land;
@@ -37,6 +39,14 @@ public class ResultArea extends TableView {
     public ResultArea() {
         super();
         initColumns();
+
+        // Context Menu - Copy to ClipBoard
+        contextMenu = new ContextMenu();
+        MenuItem copyClipBoardMenu = new MenuItem("Copie dans le presse papier");
+        copyClipBoardMenu.setOnAction(new CopyClipBoardController(this));
+        contextMenu.getItems().add(copyClipBoardMenu);
+        this.setOnContextMenuRequested(this);
+
 
         ObservableList observableList = FXCollections.observableArrayList();
         ResultModel model = new ResultModel();
@@ -110,9 +120,8 @@ public class ResultArea extends TableView {
         getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    public void prepareResultCopyToClipboard(){
-
-
-
+    @Override
+    public void handle(ContextMenuEvent event) {
+        contextMenu.show(this.getScene().getWindow(),event.getScreenX(),event.getScreenY());
     }
 }
