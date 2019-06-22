@@ -17,9 +17,11 @@ public class MenuArea extends MenuBar{
     private MenuItem option;
     private MenuItem export;
     private MenuItem exportOnlyItem;
+    private MenuItem exportCSV;
+    private MenuItem exportCSVOnlyItem;
 
     private Stage parentStage;
-    ;
+
 
 
     public MenuArea(Stage parentStage) {
@@ -45,6 +47,14 @@ public class MenuArea extends MenuBar{
         exportOnlyItem = new MenuItem("Exporter en Pdf (Uniquement les items selectionnés)");
         exportOnlyItem.setOnAction(new ExportPdfAction(parentStage,true));
         menuFile.getItems().add(exportOnlyItem);
+
+        exportCSV = new MenuItem("Exporter en CSV");
+        exportCSV.setOnAction(new ExportCsvAction(parentStage,false));
+        menuFile.getItems().add(exportCSV);
+
+        exportCSVOnlyItem = new MenuItem("Exporter en CSV (Uniquement les items selectionnés)");
+        exportCSVOnlyItem.setOnAction(new ExportCsvAction(parentStage,true));
+        menuFile.getItems().add(exportCSVOnlyItem);
 
         option = new MenuItem("Option");
         option.setOnAction(new OptionAction(parentStage));

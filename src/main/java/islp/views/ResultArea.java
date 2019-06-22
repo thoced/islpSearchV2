@@ -37,6 +37,25 @@ public class ResultArea extends TableView {
     public ResultArea() {
         super();
         initColumns();
+
+        ObservableList observableList = FXCollections.observableArrayList();
+        ResultModel model = new ResultModel();
+        model.setNumero("32494386461");
+        model.setNom("Thonon");
+        model.setPrenom("Cedric");
+        model.setDateNaissance("19810713");
+        observableList.add(model);
+
+        ResultModel model2 = new ResultModel();
+        model2.setNumero("32494386461");
+        model2.setNom("Vivroux");
+        model2.setPrenom("Geoffrey");
+        model2.setDateNaissance("19810713");
+        observableList.add(model2);
+
+        this.setItems(observableList);
+
+
     }
 
 
