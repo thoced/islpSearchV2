@@ -78,21 +78,12 @@ public class ButtonArea extends GridPane {
         columnConstraintsEnregistrement.setHalignment(HPos.LEFT);
         columnConstraintsEnregistrement.setPercentWidth(25);
 
-        ColumnConstraints columnConstraintsCopyClipBoard = new ColumnConstraints();
-        columnConstraintsCopyClipBoard.setHalignment(HPos.LEFT);
-        columnConstraintsCopyClipBoard.setPercentWidth(25);
-
-
-
 
         getRowConstraints().add(0,rowConstraints);
         getColumnConstraints().add(0,columnConstraintsLabel);
         getColumnConstraints().add(1,columnConstraints);
         getColumnConstraints().add(2,columnConstraints);
         getColumnConstraints().add(3,columnConstraintsEnregistrement);
-        getColumnConstraints().add(4,columnConstraintsCopyClipBoard);
-
-
 
         label = new Label("Registre des recherches:");
         label.setTextAlignment(TextAlignment.CENTER);
@@ -124,11 +115,6 @@ public class ButtonArea extends GridPane {
         recherche.setMaxSize(128,64);
         recherche.setOnAction(new RechercheController(comboListRegistre));
         add(recherche,2,0);
-
-        testCopy = new Button("Copy Clipboard");
-        ResultArea resultArea = (ResultArea) SingletonObjectManager.getInstance().getObjects().get(ResultArea.class);
-        testCopy.setOnAction(new CopyClipBoardController(resultArea));
-        add(testCopy,4,0);
 
         nbTupleLabel = new Label("Nombre d'enregistrement:");
         nbTupleLabel.setTextAlignment(TextAlignment.RIGHT);

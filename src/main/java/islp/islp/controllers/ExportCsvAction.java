@@ -45,8 +45,13 @@ public class ExportCsvAction implements EventHandler {
 
         }
 
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("Excel files (*.csv)", "*.csv");
+
         String csv = stringBuilder.toString();
         FileChooser chooser = new FileChooser();
+        chooser.setTitle("Export CSV des résultats");
+        chooser.setSelectedExtensionFilter(extFilter);
         File file = chooser.showSaveDialog(parentStage.getScene().getWindow());
         if(file != null){
             try {
