@@ -75,8 +75,6 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
             ObservableList<ResultModel> observableList = FXCollections.observableArrayList();
             observableList.clear();
 
-
-
             int cpt = 1;
 
             for(SearchModel search : arraySearch) {
@@ -99,7 +97,10 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
                                 model.setNumeroIslp(result.getString("numero_islp"));
                                 model.setAnnee(result.getString("annee"));
 
-                                observableList.add(model);
+                                // si le model n'est pas deja dans l'observable list (basé sur le nom, prenom, numero et date de naissance, alors on ajoute
+                                if(!observableList.contains(model))
+                                    observableList.add(model);
+
                                 cpt++;
 
                             }

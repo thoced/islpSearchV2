@@ -58,8 +58,8 @@ public class ResultArea extends TableView implements EventHandler<ContextMenuEve
 
         ResultModel model2 = new ResultModel();
         model2.setNumero("32494386461");
-        model2.setNom("Vivroux");
-        model2.setPrenom("Geoffrey");
+        model2.setNom("Thonon");
+        model2.setPrenom("Cedric");
         model2.setDateNaissance("19810713");
         observableList.add(model2);
 

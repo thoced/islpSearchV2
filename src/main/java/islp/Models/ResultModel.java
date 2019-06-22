@@ -152,4 +152,19 @@ public class ResultModel {
             return null;
 
     }
+
+    @Override
+    public boolean equals(Object obj) {
+       ResultModel model = (ResultModel) obj;
+        if(model.getNumero().equals(this.getNumero()) &&
+                model.getNom().equals(this.getNom()) &&
+                model.getPrenom().equals(this.getPrenom()) &&
+                model.getDateNaissance().equals(this.getDateNaissance())){
+            return true;
+
+        }
+        else
+            return false;
+
+    }
 }
