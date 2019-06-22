@@ -1,8 +1,10 @@
 package islp.views;
 
 import islp.Models.RegistreModel;
+import islp.islp.controllers.CopyClipBoardController;
 import islp.islp.controllers.RechercheController;
 import islp.islp.controllers.SingletonConnection;
+import islp.islp.controllers.SingletonObjectManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
@@ -32,6 +34,8 @@ public class ButtonArea extends GridPane {
     private ComboListRegistre comboListRegistre;
 
     private Button recherche;
+
+    private Button testCopy;
 
     private Label nbTupleLabel;
 
@@ -74,6 +78,10 @@ public class ButtonArea extends GridPane {
         columnConstraintsEnregistrement.setHalignment(HPos.LEFT);
         columnConstraintsEnregistrement.setPercentWidth(25);
 
+        ColumnConstraints columnConstraintsCopyClipBoard = new ColumnConstraints();
+        columnConstraintsCopyClipBoard.setHalignment(HPos.LEFT);
+        columnConstraintsCopyClipBoard.setPercentWidth(25);
+
 
 
 
@@ -82,6 +90,7 @@ public class ButtonArea extends GridPane {
         getColumnConstraints().add(1,columnConstraints);
         getColumnConstraints().add(2,columnConstraints);
         getColumnConstraints().add(3,columnConstraintsEnregistrement);
+        getColumnConstraints().add(4,columnConstraintsCopyClipBoard);
 
 
 
@@ -115,6 +124,11 @@ public class ButtonArea extends GridPane {
         recherche.setMaxSize(128,64);
         recherche.setOnAction(new RechercheController(comboListRegistre));
         add(recherche,2,0);
+
+        testCopy = new Button("Copy Clipboard");
+        ResultArea resultArea = (ResultArea) SingletonObjectManager.getInstance().getObjects().get(ResultArea.class);
+        testCopy.setOnAction(new CopyClipBoardController(resultArea));
+        add(testCopy,4,0);
 
         nbTupleLabel = new Label("Nombre d'enregistrement:");
         nbTupleLabel.setTextAlignment(TextAlignment.RIGHT);

@@ -3,15 +3,21 @@ package islp.views;
 import islp.Models.ResultModel;
 import islp.views.cellRenderFactory.CellNumeroColor;
 import islp.views.tableCell.DateNaissanceTableCell;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.DataFormat;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 import javax.xml.transform.Result;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ResultArea extends TableView {
 
@@ -30,12 +36,12 @@ public class ResultArea extends TableView {
 
     public ResultArea() {
         super();
-
         initColumns();
     }
 
-    private void initColumns(){
 
+
+    private void initColumns(){
 
 
          id = new TableColumn("id");
@@ -83,5 +89,11 @@ public class ResultArea extends TableView {
 
 
         getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
+
+    public void prepareResultCopyToClipboard(){
+
+
+
     }
 }
