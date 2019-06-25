@@ -1,6 +1,7 @@
 package islp.views;
 
 import islp.Models.ResultModel;
+import islp.islp.controllers.BngStatutAction;
 import islp.islp.controllers.CopyClipBoardController;
 import islp.views.cellRenderFactory.CellNumeroColor;
 import islp.views.tableCell.DateNaissanceTableCell;
@@ -32,9 +33,11 @@ public class ResultArea extends TableView implements EventHandler<ContextMenuEve
     private TableColumn type;
     private TableColumn numIslp;
     private TableColumn millesime;
+    private TableColumn bng;
 
     private String numeroCurrent;
     private static ResultModel saveModel;
+
 
     public ResultArea() {
         super();
@@ -42,9 +45,33 @@ public class ResultArea extends TableView implements EventHandler<ContextMenuEve
 
         // Context Menu - Copy to ClipBoard
         contextMenu = new ContextMenu();
+
         MenuItem copyClipBoardMenu = new MenuItem("Copie dans le presse papier");
         copyClipBoardMenu.setOnAction(new CopyClipBoardController(this));
+
+        Menu bngStatutMenu = new Menu("Bng statut");
+        MenuItem stupMenu = new MenuItem("Connu STUPS");
+        stupMenu.setOnAction(new BngStatutAction(BngStatutAction.STATUT.STUP));
+
+        MenuItem volMenu = new MenuItem("Connu VOLS");
+        volMenu.setOnAction(new BngStatutAction(BngStatutAction.STATUT.VOL));
+
+        MenuItem moeursMenu = new MenuItem("Connu MOEURS");
+        moeursMenu.setOnAction(new BngStatutAction(BngStatutAction.STATUT.MOEURS));
+
+        MenuItem crimeMenu = new MenuItem("Connu CRIME");
+        crimeMenu.setOnAction(new BngStatutAction(BngStatutAction.STATUT.CRIME));
+
+        MenuItem ecofinMenu = new MenuItem("Connu ECOFIN");
+        ecofinMenu.setOnAction(new BngStatutAction(BngStatutAction.STATUT.ECOFIN));
+
+        MenuItem delMenu = new MenuItem("Supprimer tous les statuts");
+        delMenu.setOnAction(new BngStatutAction(BngStatutAction.STATUT.DELETE));
+        bngStatutMenu.getItems().addAll(stupMenu,volMenu,moeursMenu,crimeMenu,ecofinMenu,delMenu);
+
+
         contextMenu.getItems().add(copyClipBoardMenu);
+        contextMenu.getItems().add(bngStatutMenu);
         this.setOnContextMenuRequested(this);
 
 
@@ -100,6 +127,9 @@ public class ResultArea extends TableView implements EventHandler<ContextMenuEve
          millesime = new TableColumn("Année");
          this.getColumns().add(millesime);
 
+         bng = new TableColumn("Bng");
+         this.getColumns().add(bng);
+
 
 
          id.setCellValueFactory(new PropertyValueFactory<ResultModel,Integer>("id"));
@@ -111,6 +141,7 @@ public class ResultArea extends TableView implements EventHandler<ContextMenuEve
          type.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("typeIslp"));
          numIslp.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("numeroIslp"));
          millesime.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("annee"));
+         bng.setCellValueFactory(new PropertyValueFactory<ResultModel,String>("bng"));
 
 
          dateNaissance.setCellFactory(DateNaissanceTableCell.forTableColumn());

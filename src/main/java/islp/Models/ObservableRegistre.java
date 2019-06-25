@@ -24,7 +24,7 @@ public class ObservableRegistre extends ArrayList<RegistreModel>{
     public ObservableRegistre() {
 
 
-    /*    String sql = "select * from t_registre_zone ORDER BY registre ASC";
+        String sql = "select * from t_registre_zone ORDER BY registre ASC";
         try {
             Statement st = SingletonConnection.getInstance().getConnection().createStatement();
             ResultSet result = st.executeQuery(sql);
@@ -42,7 +42,7 @@ public class ObservableRegistre extends ArrayList<RegistreModel>{
             System.out.println("TEST !!!!!!!!!! " + e.getMessage());
             log.debug(e.getMessage());
         }
-*/
+
     }
 
 }

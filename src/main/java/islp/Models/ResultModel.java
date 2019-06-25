@@ -4,10 +4,9 @@ import javafx.beans.property.*;
 
 public class ResultModel {
 
-
-
     private BooleanProperty group = new SimpleBooleanProperty();
-    private IntegerProperty id = new SimpleIntegerProperty();
+    private LongProperty id = new SimpleLongProperty();
+    private IntegerProperty cpt = new SimpleIntegerProperty();
     private StringProperty numero = new SimpleStringProperty();
     private StringProperty land = new SimpleStringProperty();
     private StringProperty nom = new SimpleStringProperty();
@@ -16,6 +15,8 @@ public class ResultModel {
     private StringProperty typeIslp = new SimpleStringProperty();
     private StringProperty numeroIslp = new SimpleStringProperty();
     private StringProperty annee = new SimpleStringProperty();
+    private StringProperty bng = new SimpleStringProperty();
+    private StringProperty registre = new SimpleStringProperty();
 
     public ResultModel() {
     }
@@ -32,16 +33,28 @@ public class ResultModel {
         this.group.set(group);
     }
 
-    public int getId() {
+    public long getId() {
         return id.get();
     }
 
-    public IntegerProperty idProperty() {
+    public LongProperty idProperty() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id.set(id);
+    }
+
+    public int getCpt() {
+        return cpt.get();
+    }
+
+    public IntegerProperty cptProperty() {
+        return cpt;
+    }
+
+    public void setCpt(int cpt) {
+        this.cpt.set(cpt);
     }
 
     public String getNumero() {
@@ -151,6 +164,30 @@ public class ResultModel {
         else
             return null;
 
+    }
+
+    public String getBng() {
+        return bng.get();
+    }
+
+    public StringProperty bngProperty() {
+        return bng;
+    }
+
+    public void setBng(String bng) {
+        this.bng.set(bng);
+    }
+
+    public String getRegistre() {
+        return registre.get();
+    }
+
+    public StringProperty registreProperty() {
+        return registre;
+    }
+
+    public void setRegistre(String registre) {
+        this.registre.set(registre);
     }
 
     @Override

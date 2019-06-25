@@ -87,7 +87,8 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
                         if(result != null){
                             while(result.next()){
                                 ResultModel model = new ResultModel();
-                                model.setId(cpt);
+                                model.setCpt(cpt);
+                                model.setId(result.getLong("id"));
                                 model.setNumero(result.getString("numero"));
                                 model.setLand(result.getString("land"));
                                 model.setNom(result.getString("nom"));
@@ -96,6 +97,8 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
                                 model.setTypeIslp(result.getString("type_islp"));
                                 model.setNumeroIslp(result.getString("numero_islp"));
                                 model.setAnnee(result.getString("annee"));
+                                model.setBng(result.getString("bng"));
+                                model.setRegistre(table);
 
                                 // si le model n'est pas deja dans l'observable list (basé sur le nom, prenom, numero et date de naissance, alors on ajoute
                                 if(!observableList.contains(model))
