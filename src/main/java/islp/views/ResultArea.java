@@ -3,6 +3,7 @@ package islp.views;
 import islp.Models.ResultModel;
 import islp.islp.controllers.BngStatutAction;
 import islp.islp.controllers.CopyClipBoardController;
+import islp.views.bngRenderFactory.BngTableCell;
 import islp.views.cellRenderFactory.CellNumeroColor;
 import islp.views.tableCell.DateNaissanceTableCell;
 import javafx.collections.FXCollections;
@@ -128,6 +129,7 @@ public class ResultArea extends TableView implements EventHandler<ContextMenuEve
          this.getColumns().add(millesime);
 
          bng = new TableColumn("Bng");
+         bng.setMinWidth(65);
          this.getColumns().add(bng);
 
 
@@ -145,6 +147,7 @@ public class ResultArea extends TableView implements EventHandler<ContextMenuEve
 
 
          dateNaissance.setCellFactory(DateNaissanceTableCell.forTableColumn());
+         bng.setCellFactory(BngTableCell.forTableColumn());
 
 
 
