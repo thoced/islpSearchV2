@@ -1,4 +1,4 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -6,7 +6,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import islp.Models.ResultModel;
-import islp.views.ResultArea;
+import islp.ResultPackage.ResultArea;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -14,7 +14,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 

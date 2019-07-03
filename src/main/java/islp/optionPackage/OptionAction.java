@@ -1,15 +1,12 @@
-package islp.islp.controllers;
+package islp.optionPackage;
 
-import islp.views.OptionDialog;
+import islp.controllers.CConfig;
+import islp.controllers.PropertiesNotFoundException;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.stage.*;
 
-import javax.swing.*;
-import javax.swing.text.html.Option;
 import java.io.IOException;
 
 public class OptionAction implements EventHandler<ActionEvent>{

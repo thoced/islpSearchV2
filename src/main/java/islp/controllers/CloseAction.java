@@ -1,4 +1,4 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;

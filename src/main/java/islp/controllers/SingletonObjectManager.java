@@ -1,4 +1,4 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import java.util.HashMap;
 

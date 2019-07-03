@@ -9,8 +9,6 @@ import javafx.scene.layout.Pane;
 
 public class bngHBox extends HBox {
 
-
-
     private String statutBng;
 
     public bngHBox(String bng) {

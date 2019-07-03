@@ -1,7 +1,7 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import islp.Models.ResultModel;
-import islp.views.ResultArea;
+import islp.ResultPackage.ResultArea;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 

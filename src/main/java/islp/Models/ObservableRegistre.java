@@ -1,19 +1,12 @@
 package islp.Models;
 
-import islp.islp.controllers.SingletonConnection;
-import islp.main.IslpMainApp;
-import javafx.beans.InvalidationListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableArrayBase;
-import javafx.collections.ObservableList;
+import islp.controllers.SingletonConnection;
 import org.apache.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ObservableRegistre extends ArrayList<RegistreModel>{
 

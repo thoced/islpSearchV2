@@ -1,4 +1,4 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import islp.views.AboutDialog;
 import javafx.event.ActionEvent;

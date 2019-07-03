@@ -1,4 +1,4 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import org.apache.log4j.Logger;
 

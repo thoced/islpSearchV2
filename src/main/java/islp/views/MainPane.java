@@ -1,6 +1,9 @@
 package islp.views;
 
-import islp.islp.controllers.SingletonObjectManager;
+import islp.ResultPackage.ContextMenuAction;
+import islp.ResultPackage.ResultArea;
+import islp.ResultPackage.ShowInfoAction;
+import islp.controllers.SingletonObjectManager;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -53,6 +56,8 @@ public class MainPane extends BorderPane {
 
     private void initResultArea(){
         resultArea = new ResultArea();
+        resultArea.setOnContextMenuRequested(new ContextMenuAction(resultArea));
+        resultArea.setOnMouseClicked(new ShowInfoAction(resultArea));
         SingletonObjectManager.getInstance().getObjects().put(ResultArea.class,resultArea);
         this.setCenter(resultArea);
     }

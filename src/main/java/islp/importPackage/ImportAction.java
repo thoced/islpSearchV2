@@ -1,18 +1,13 @@
-package islp.islp.controllers;
+package islp.importPackage;
 
 import islp.Models.DataModel;
 import islp.Models.DataModelImporter;
-import islp.views.AlertView;
-import islp.views.ImportDialog;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.*;

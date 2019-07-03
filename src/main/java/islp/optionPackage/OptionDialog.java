@@ -1,4 +1,4 @@
-package islp.views;
+package islp.optionPackage;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

@@ -1,7 +1,7 @@
 package islp.main;
 
 import islp.Models.RegistreModel;
-import islp.islp.controllers.RechercheController;
+import islp.controllers.RechercheController;
 import islp.views.MainPane;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;

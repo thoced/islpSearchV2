@@ -1,10 +1,15 @@
 package islp.views;
 
-import islp.islp.controllers.*;
+import islp.controllers.AboutAction;
+import islp.controllers.CloseAction;
+import islp.controllers.ExportCsvAction;
+import islp.controllers.ExportPdfAction;
+import islp.importPackage.ImportAction;
+import islp.controllers.*;
+import islp.optionPackage.OptionAction;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 public class MenuArea extends MenuBar{
@@ -21,8 +26,6 @@ public class MenuArea extends MenuBar{
     private MenuItem exportCSVOnlyItem;
 
     private Stage parentStage;
-
-
 
     public MenuArea(Stage parentStage) {
         super();

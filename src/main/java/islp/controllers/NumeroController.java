@@ -1,4 +1,4 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 public class NumeroController {
 }

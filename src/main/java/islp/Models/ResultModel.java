@@ -1,6 +1,13 @@
 package islp.Models;
 
+import islp.controllers.SingletonConnection;
 import javafx.beans.property.*;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResultModel {
 
@@ -188,6 +195,39 @@ public class ResultModel {
 
     public void setRegistre(String registre) {
         this.registre.set(registre);
+    }
+
+    public List<ResultModel> getListResultModelByKey() throws SQLException {
+        ArrayList<ResultModel> list = new ArrayList<ResultModel>();
+
+
+        String sql = "SELECT * FROM " + this.getRegistre() + " WHERE nom = ? AND prenom = ? AND numero = ?";
+        System.out.println(sql);
+        PreparedStatement ps =  SingletonConnection.getInstance().getConnection().prepareStatement(sql);
+        ps.setString(1,this.getNom());
+        ps.setString(2,this.getPrenom());
+        ps.setString(3,this.getNumero());
+        ResultSet resultSet = ps.executeQuery();
+        int cpt = 1;
+        while(resultSet.next()){
+            ResultModel model = new ResultModel();
+            model.setCpt(cpt);
+            model.setId(resultSet.getLong("id"));
+            model.setNumero(resultSet.getString("numero"));
+            model.setLand(resultSet.getString("land"));
+            model.setNom(resultSet.getString("nom"));
+            model.setPrenom(resultSet.getString("prenom"));
+            model.setDateNaissance(resultSet.getString("date_naissance"));
+            model.setTypeIslp(resultSet.getString("type_islp"));
+            model.setNumeroIslp(resultSet.getString("numero_islp"));
+            model.setAnnee(resultSet.getString("annee"));
+            model.setBng(resultSet.getString("bng"));
+            model.setRegistre(this.getRegistre());
+            list.add(model);
+        }
+
+
+        return list;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package islp.Models;
 
-import islp.islp.controllers.SingletonConnection;
+import islp.controllers.SingletonConnection;
 
 import java.io.*;
 import java.sql.PreparedStatement;

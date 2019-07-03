@@ -1,4 +1,4 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import islp.Models.NumeroModel;
 import islp.Models.SearchModel;

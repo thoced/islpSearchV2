@@ -1,14 +1,6 @@
 package islp.views;
 
-import islp.Models.RegistreModel;
-import islp.islp.controllers.CopyClipBoardController;
-import islp.islp.controllers.RechercheController;
-import islp.islp.controllers.SingletonConnection;
-import islp.islp.controllers.SingletonObjectManager;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import islp.controllers.RechercheController;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,14 +8,9 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ButtonArea extends GridPane {
 

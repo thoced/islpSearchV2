@@ -1,13 +1,11 @@
-package islp.islp.controllers;
+package islp.controllers;
 
 import islp.Models.ArraySearch;
-import islp.Models.NumeroModel;
 import islp.Models.ResultModel;
 import islp.Models.SearchModel;
-import islp.views.ButtonArea;
 import islp.views.ComboListRegistre;
 import islp.views.InputArea;
-import islp.views.ResultArea;
+import islp.ResultPackage.ResultArea;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
