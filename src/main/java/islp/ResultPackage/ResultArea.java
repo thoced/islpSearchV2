@@ -3,8 +3,8 @@ package islp.ResultPackage;
 import islp.Models.ResultModel;
 import islp.controllers.BngStatutAction;
 import islp.controllers.CopyClipBoardController;
-import islp.views.bngRenderFactory.BngTableCell;
-import islp.views.tableCell.DateNaissanceTableCell;
+import islp.ResultPackage.bngRenderFactory.BngTableCell;
+import islp.ResultPackage.tableCell.DateNaissanceTableCell;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -61,7 +61,6 @@ public class ResultArea extends TableView {
         context.getItems().add(bngStatutMenu);
 
 
-
     }
 
 
@@ -100,7 +99,7 @@ public class ResultArea extends TableView {
         this.getColumns().add(bng);
 
 
-        id.setCellValueFactory(new PropertyValueFactory<ResultModel, Integer>("id"));
+        id.setCellValueFactory(new PropertyValueFactory<ResultModel, Integer>("cpt"));
         numero.setCellValueFactory(new PropertyValueFactory<ResultModel, String>("numero"));
         land.setCellValueFactory(new PropertyValueFactory<ResultModel, String>("land"));
         nom.setCellValueFactory(new PropertyValueFactory<ResultModel, String>("nom"));
@@ -124,4 +123,43 @@ public class ResultArea extends TableView {
     }
 
 
+    public TableColumn getIdColumn() {
+        return id;
+    }
+
+    public TableColumn getNumero() {
+        return numero;
+    }
+
+    public TableColumn getLand() {
+        return land;
+    }
+
+    public TableColumn getNom() {
+        return nom;
+    }
+
+    public TableColumn getPrenom() {
+        return prenom;
+    }
+
+    public TableColumn getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public TableColumn getType() {
+        return type;
+    }
+
+    public TableColumn getNumIslp() {
+        return numIslp;
+    }
+
+    public TableColumn getMillesime() {
+        return millesime;
+    }
+
+    public TableColumn getBng() {
+        return bng;
+    }
 }

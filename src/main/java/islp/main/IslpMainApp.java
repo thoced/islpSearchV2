@@ -36,7 +36,7 @@ public class IslpMainApp extends Application {
         URL cssURL = getClass().getResource("style.css");
         mainScene.getStylesheets().add("style.css");
         primaryStage.setScene(mainScene);
-        primaryStage.setTitle("Islp Search V2");
+        primaryStage.setTitle("Islp Search V3");
         primaryStage.show();
     }
 }

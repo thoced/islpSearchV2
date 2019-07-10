@@ -116,7 +116,12 @@ public class RechercheController implements EventHandler,ChangeListener<String> 
             ResultArea resultArea = (ResultArea) SingletonObjectManager.getInstance().getObjects().get(ResultArea.class);
             if(resultArea != null){
 
+                resultArea.getItems().clear();
                 resultArea.setItems(observableList);
+                resultArea.refresh();
+
+
+
             }
 
 

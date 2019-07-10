@@ -30,12 +30,9 @@ public class BngStatutAction implements EventHandler<ActionEvent> {
                 // changement du statut
 
                 // mise à jour du result model
-                try {
                     changeStatut(resultModel);
-                    updateModel(resultModel);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                    resultModel.updateDbStatutBng();
+
 
             }
 
@@ -44,16 +41,7 @@ public class BngStatutAction implements EventHandler<ActionEvent> {
 
     }
 
-    private void updateModel(ResultModel resultModel) throws SQLException {
 
-
-        String sql = "UPDATE " + resultModel.getRegistre() + " SET bng = ? WHERE id = ?";
-        PreparedStatement ps = SingletonConnection.getInstance().getConnection().prepareStatement(sql);
-        ps.setString(1,resultModel.getBng());
-        ps.setLong(2,resultModel.getId());
-        ps.executeUpdate();
-
-    }
 
     private void changeStatut(ResultModel resultModel) {
         StringBuilder str = new StringBuilder();

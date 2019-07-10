@@ -177,12 +177,50 @@ public class ResultModel {
         return bng.get();
     }
 
+    public String getBngFormat(){
+        StringBuilder builder = new StringBuilder();
+
+        if(this.getBng() != null) {
+            if (this.getBng().contains("S"))
+                builder.append("Stupéfiants ");
+            if (this.getBng().contains("C"))
+                builder.append("Atteinte aux personnes ");
+            if (this.getBng().contains("M"))
+                builder.append("Moeurs ");
+            if (this.getBng().contains("E"))
+                builder.append("EcoFin ");
+            if (this.getBng().contains("V"))
+                builder.append("Atteinte aux biens ");
+        }
+
+        if(builder.length() == 0)
+            builder.append("Inconnu ");
+
+        return builder.toString();
+    }
+
     public StringProperty bngProperty() {
         return bng;
     }
 
     public void setBng(String bng) {
-        this.bng.set(bng);
+            this.bng.set(bng);
+    }
+
+    public void updateDbStatutBng(){
+        // update dans la DB
+        try {
+            String sql = "UPDATE " + getRegistre() + " SET bng = ? WHERE nom = ? AND prenom = ? AND numero = ?";
+            PreparedStatement ps = SingletonConnection.getInstance().getConnection().prepareStatement(sql);
+            ps.setString(1, getBng());
+            ps.setString(2, getNom());
+            ps.setString(3, getPrenom());
+            ps.setString(4, getNumero());
+            ps.executeUpdate();
+        }catch(SQLException sql){
+
+        }
+
     }
 
     public String getRegistre() {
@@ -224,6 +262,7 @@ public class ResultModel {
             model.setBng(resultSet.getString("bng"));
             model.setRegistre(this.getRegistre());
             list.add(model);
+            cpt++;
         }
 
 

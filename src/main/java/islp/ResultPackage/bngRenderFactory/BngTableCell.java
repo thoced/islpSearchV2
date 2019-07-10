@@ -1,6 +1,5 @@
-package islp.views.bngRenderFactory;
+package islp.ResultPackage.bngRenderFactory;
 
-import islp.views.tableCell.DateNaissanceTableCell;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
@@ -19,7 +18,6 @@ public class BngTableCell<T> extends TableCell<T,String> {
 
             if (!empty && item != null) {
                 this.getChildren().add(new bngHBox(item));
-
             }
         }
 

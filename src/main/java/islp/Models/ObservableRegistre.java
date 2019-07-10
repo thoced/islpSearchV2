@@ -32,7 +32,6 @@ public class ObservableRegistre extends ArrayList<RegistreModel>{
             e.printStackTrace();
             log.debug(e.getMessage());
         } catch(NullPointerException e){
-            System.out.println("TEST !!!!!!!!!! " + e.getMessage());
             log.debug(e.getMessage());
         }
 

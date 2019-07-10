@@ -5,6 +5,7 @@ import islp.Models.ResultModel;
 import islp.ResultPackage.ResultArea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -24,6 +25,7 @@ public class InfoView extends BorderPane {
         this.list = list;
         ObservableList<ResultModel> observableList = FXCollections.observableArrayList(this.list);
         tableView = new ResultArea();
+        tableView.getColumns().remove(tableView.getBng());
         tableView.setItems(observableList);
 
         // ajout du tableView au centre
@@ -31,9 +33,11 @@ public class InfoView extends BorderPane {
 
         // ajout du bouton
         HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER_RIGHT);
         buttonOk = new Button("Ok");
         buttonOk.setMinWidth(64);
         buttonOk.setMinHeight(48);
+        buttonOk.setLineSpacing(8);
         hBox.getChildren().addAll(buttonOk);
         this.setBottom(hBox);
 

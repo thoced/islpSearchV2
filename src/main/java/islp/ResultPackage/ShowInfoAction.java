@@ -5,6 +5,7 @@ import islp.Models.ResultModel;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
@@ -35,6 +36,8 @@ public class ShowInfoAction implements EventHandler< MouseEvent> {
                     });
                     Scene scene = new Scene(infoView, 1024, 512);
                     stage.setScene(scene);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setTitle("Liste des enregistrements identiques");
                     stage.showAndWait();
 
 

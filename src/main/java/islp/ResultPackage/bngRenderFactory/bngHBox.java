@@ -1,11 +1,12 @@
-package islp.views.bngRenderFactory;
+package islp.ResultPackage.bngRenderFactory;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class bngHBox extends HBox {
 

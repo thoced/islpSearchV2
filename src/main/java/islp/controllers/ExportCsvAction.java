@@ -8,10 +8,7 @@ import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class ExportCsvAction implements EventHandler {
 
@@ -40,7 +37,7 @@ public class ExportCsvAction implements EventHandler {
         for(Object result : selectionModel){
            ResultModel resultModel = (ResultModel) result;
            stringBuilder.append(resultModel.getNumero() + ";" + resultModel.getNom() + ";" + resultModel.getPrenom() + ";" + resultModel.getDateNaissanceFormat() + ";"
-                   + resultModel.getTypeIslp() + ";" + resultModel.getNumeroIslp() + ";" + resultModel.getAnnee() + "\n ");
+                   + resultModel.getTypeIslp() + ";" + resultModel.getNumeroIslp() + ";" + resultModel.getAnnee() +  ";" + resultModel.getBngFormat() + "\n ");
 
 
         }
@@ -55,6 +52,8 @@ public class ExportCsvAction implements EventHandler {
         File file = chooser.showSaveDialog(parentStage.getScene().getWindow());
         if(file != null){
             try {
+
+                System.setProperty( "file.encoding", "UTF-16");
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 fileOutputStream.write(csv.getBytes());
                 fileOutputStream.flush();
